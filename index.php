@@ -1,147 +1,208 @@
 <?php
-// Procesamiento del formulario
-$mensaje_enviado = false;
+// --- Procesamiento del formulario ---
+$enviado = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nombre = htmlspecialchars($_POST["nombre"]);
     $correo = htmlspecialchars($_POST["correo"]);
     $mensaje = htmlspecialchars($_POST["mensaje"]);
-    $mensaje_enviado = true;
+    $enviado = true;
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Harry Styles FanPage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fff5f8;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #ffb6c1;
-            padding: 20px;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav a {
-            margin: 0 15px;
-            color: #222;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        section {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 0.5s;
-        }
-        section.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-        form {
-            background: #ffe3ec;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            margin: auto;
-        }
-        input, textarea {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #ff6699;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ff3366;
-        }
-        footer {
-            background-color: #ffb6c1;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        img {
-            border-radius: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Harry Styles Experience 💫</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* -------- ESTILO GENERAL -------- */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #ffe5ec, #ffd6e0, #ffe6f0);
+    margin: 0;
+    color: #333;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+header {
+    background: linear-gradient(90deg, #ff5f9e, #ff8fab);
+    color: white;
+    padding: 40px 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: fadeIn 1s ease;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+}
+nav {
+    margin-top: 15px;
+}
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+section {
+    display: none;
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: auto;
+    animation: fadeIn 0.6s ease;
+}
+section.active {
+    display: block;
+}
+img {
+    border-radius: 15px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+footer {
+    background-color: #ff8fab;
+    color: white;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* -------- JUEGO -------- */
+#juego .pregunta {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+.opcion {
+    background-color: #ffe1ea;
+    border: 2px solid #ff8fab;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: 60%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.opcion:hover {
+    background-color: #ffb6c1;
+}
+
+/* -------- FORMULARIO -------- */
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: auto;
+}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+button {
+    background-color: #ff5f9e;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: #ff3366;
+}
+
+/* -------- ANIMACIÓN -------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------- REPRODUCTOR -------- */
+#audio-player {
+    margin-top: 25px;
+    background: #fff;
+    border-radius: 12px;
+    display: inline-block;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+</style>
 </head>
 <body>
 
 <header>
-    <h1>🎤 Harry Styles FanPage</h1>
+    <h1>Harry Styles Experience 💫</h1>
     <nav>
-        <a href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
-        <a href="#" onclick="mostrarSeccion('bio')">Biografía</a>
-        <a href="#" onclick="mostrarSeccion('juego')">Juego</a>
-        <a href="#" onclick="mostrarSeccion('contacto')">Contacto</a>
+        <a href="#" onclick="mostrar('inicio')">Inicio</a>
+        <a href="#" onclick="mostrar('bio')">Biografía</a>
+        <a href="#" onclick="mostrar('juego')">Trivia</a>
+        <a href="#" onclick="mostrar('contacto')">Contacto</a>
     </nav>
 </header>
 
-<!-- Sección Inicio -->
+<!-- INICIO -->
 <section id="inicio" class="active">
-    <h2>Bienvenido al mundo de Harry Styles 💫</h2>
-    <p>Explora su música, su historia y pon a prueba cuánto sabes sobre él.</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Harry_Styles_2018.jpg" alt="Harry Styles" width="400">
+    <h2>🎶 Bienvenido al Universo de Harry Styles</h2>
+    <p>Explora su historia, disfruta su música y demuestra cuánto sabes sobre él.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Harry_Styles_2022.jpg" alt="Harry Styles" width="500">
+
+    <div id="audio-player">
+        <h3>Escucha un fragmento 🎧</h3>
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
+    </div>
 </section>
 
-<!-- Sección Biografía -->
+<!-- BIOGRAFÍA -->
 <section id="bio">
-    <h2>Biografía</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Harry_Styles_2019.jpg" width="300" alt="Harry Styles">
+    <h2>🌟 Biografía</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Harry_Styles_2019_2.jpg" width="400">
     <p>
         Harry Edward Styles nació el 1 de febrero de 1994 en Redditch, Inglaterra.  
-        Fue miembro de la banda One Direction y después inició una exitosa carrera como solista.  
-        Su música mezcla pop, rock y soul con influencias retro y letras profundas.
+        Inició su carrera en la banda *One Direction*, y más tarde se consolidó como solista con álbumes aclamados como  
+        <strong>“Fine Line”</strong> (2019) y <strong>“Harry’s House”</strong> (2022).  
+        Su estilo combina influencias del rock clásico, pop alternativo y un toque de nostalgia vintage.
     </p>
 </section>
 
-<!-- Sección Juego -->
+<!-- JUEGO -->
 <section id="juego">
-    <h2>🎮 Adivina la canción</h2>
-    <p><em>“You know it's not the same as it was...”</em></p>
-    <input type="text" id="respuesta" placeholder="Escribe el nombre de la canción">
-    <button onclick="verificar()">Comprobar</button>
-    <p id="resultado"></p>
+    <h2>🎮 Trivia Musical</h2>
+    <p>¿Cuánto sabes sobre Harry Styles? Responde correctamente y suma puntos.</p>
+
+    <div id="pregunta-container"></div>
+    <p><strong>Puntuación:</strong> <span id="puntuacion">0</span></p>
 </section>
 
-<!-- Sección Contacto -->
+<!-- CONTACTO -->
 <section id="contacto">
-    <h2>📬 Contáctanos</h2>
+    <h2>💌 Contáctanos</h2>
 
-    <?php if ($mensaje_enviado): ?>
-        <h3>¡Gracias por contactarnos, <?php echo $nombre; ?> 💌!</h3>
-        <p>Tu mensaje fue recibido correctamente.</p>
+    <?php if ($enviado): ?>
+        <h3>¡Gracias, <?php echo $nombre; ?>! 💕</h3>
+        <p>Tu mensaje fue recibido:</p>
         <blockquote><?php echo $mensaje; ?></blockquote>
-        <p>Te responderemos pronto a <strong><?php echo $correo; ?></strong>.</p>
-        <button onclick="mostrarSeccion('inicio')">Volver al inicio</button>
+        <p>Te responderemos a: <strong><?php echo $correo; ?></strong></p>
+        <button onclick="mostrar('inicio')">Volver</button>
     <?php else: ?>
         <form method="POST">
             <label>Nombre:</label>
             <input type="text" name="nombre" required>
 
-            <label>Correo electrónico:</label>
+            <label>Correo:</label>
             <input type="email" name="correo" required>
 
             <label>Mensaje:</label>
@@ -153,28 +214,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </section>
 
 <footer>
-    <p>&copy; <?php echo date("Y"); ?> FanPage creada en PHP</p>
+    <p>&copy; <?php echo date("Y"); ?> Harry Styles Experience | Creado en PHP 💕</p>
 </footer>
 
 <script>
-function mostrarSeccion(id) {
-    const secciones = document.querySelectorAll("section");
-    secciones.forEach(sec => sec.classList.remove("active"));
+function mostrar(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     window.scrollTo(0, 0);
 }
 
-function verificar() {
-    const r = document.getElementById('respuesta').value.toLowerCase();
-    const resultado = document.getElementById('resultado');
-    if (r.includes("as it was")) {
-        resultado.textContent = "✅ ¡Correcto! Es 'As It Was'.";
-        resultado.style.color = "green";
+// --- Juego de Trivia ---
+const preguntas = [
+    {pregunta: "¿Cuál fue el primer álbum solista de Harry Styles?", opciones: ["Fine Line", "Harry Styles", "Harry’s House"], correcta: "Harry Styles"},
+    {pregunta: "¿De qué banda formó parte?", opciones: ["Coldplay", "One Direction", "Maroon 5"], correcta: "One Direction"},
+    {pregunta: "¿Qué canción incluye la frase 'You know it's not the same as it was'?", opciones: ["Watermelon Sugar", "As It Was", "Sign of the Times"], correcta: "As It Was"}
+];
+let indice = 0;
+let puntuacion = 0;
+
+function mostrarPregunta() {
+    const cont = document.getElementById('pregunta-container');
+    if (indice < preguntas.length) {
+        const p = preguntas[indice];
+        cont.innerHTML = `<div class='pregunta'><strong>${p.pregunta}</strong></div>` + 
+        p.opciones.map(op => `<div class='opcion' onclick='verificar("${op}")'>${op}</div>`).join("");
     } else {
-        resultado.textContent = "❌ Intenta de nuevo.";
-        resultado.style.color = "red";
+        cont.innerHTML = `<h3>Juego terminado 🎉</h3><p>Tu puntuación final es: ${puntuacion}/${preguntas.length}</p>`;
     }
 }
+function verificar(respuesta) {
+    if (respuesta === preguntas[indice].correcta) {
+        puntuacion++;
+        document.getElementById('puntuacion').textContent = puntuacion;
+    }
+    indice++;
+    mostrarPregunta();
+}
+mostrarPregunta();
 </script>
 
 </body>
