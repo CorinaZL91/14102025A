@@ -155,7 +155,7 @@ button:hover {
 <section id="inicio" class="active">
     <h2>🎶 Bienvenido al Universo de Harry Styles</h2>
     <p>Explora su historia, disfruta su música y demuestra cuánto sabes sobre él.</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Harry_Styles_2022.jpg" alt="Harry Styles" width="500">
+    <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnOJoSOrJOAH4vtAiv74Mt3Ub-6s0TI-3vr7A8ZZ2sSS7qK1ZR6qNb2ZChhobBOc99Z3TLB1u-HFtf97WdS_QilI3XTsFNOBF4JtXrfg" alt="Harry Styles" width="500">
 
     <div id="audio-player">
         <h3>Escucha un fragmento 🎧</h3>
