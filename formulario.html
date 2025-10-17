@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Biografía</title>
+</head>
+
+<body>
+    <header class="encabezado">
+        <h1 class="title is-size-2 has-text-black is-family-code">Corina Zapata 🩵</h1>
+    </header>
+
+    <nav class="navbar is-primary">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="biografia.html">Inicio</a>
+                <a class="navbar-item" href="SobreMi.html">Sobre Mí</a>
+                <a class="navbar-item" href="experiencias.html">Experiencias</a>
+                <a class="navbar-item" href="lugares.html">Lugares</a>
+                <a class="navbar-item" href="formulario.html">Formulario</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section id="formulario" class="section">
+        <div class="container">
+            <h1 class="title is-2 has-text-centered">Formulario</h1>
+            <p class="has-text-centered is-size-5 has-text-info intro-text">
+                Completa este formulario con información sobre tus gustos e intereses. ¡Quisiera conocerte mejor!
+            </p>
+
+
+            <form id="miFormulario" action="#" method="post" class="formulario">
+
+                <div class="field">
+                    <label class="label">Escribe tu nombre </label>
+                    <div class="control">
+                        <input class="input" type="text" name="nombre" placeholder="Nombre + Apellido" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Tus intereses musicales</label>
+                    <div class="control">
+                        <input class="input" type="text" name="musica" placeholder="Ej. Harry Styles, Pop, Rock"
+                            required>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">¿Qué animales te gustan?</label>
+                    <div class="control">
+                        <input class="input" type="text" name="animales" placeholder="Ej. Gatos, Perros, Conejos"
+                            required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">¿Qué deportes practicas?</label>
+                    <div class="control">
+                        <input class="input" type="text" name="deportes" placeholder="Ej. Fútbol, Gimnasio, Correr"
+                            required>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">¿Qué series o películas te gustan?</label>
+                    <div class="control">
+                        <input class="input" type="text" name="series" placeholder="Ej. Stranger Things, Avengers"
+                            required>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Contraseña</label>
+                    <div class="control">
+                        <input class="input" type="password" name="password" placeholder="Elige una contraseña"
+                            required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Selecciona tu género</label>
+                    <div class="control">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="genero" value="masculino" required>
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="genero" value="femenino">
+                                Femenino
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="genero" value="otro">
+                                Otro
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Selecciona tu color favorito</label>
+                    <div class="control">
+                        <input class="input" type="color" name="color_favorito">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Fecha de nacimiento</label>
+                    <div class="control">
+                        <input class="input" type="date" name="fecha_nacimiento">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">¿Cuántos años tienes? </label>
+                    <div class="control">
+                        <input class="input" type="number" name="anios" min="0" max="10" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">¿A qué hora despiertas comunmente?</label>
+                    <div class="control">
+                        <input class="input" type="time" name="tiempo_despertar">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Mes favorito</label>
+                    <div class="control">
+                        <select class="input" name="mes_favorito">
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                            <option value="marzo">Marzo</option>
+                            <option value="abril">Abril</option>
+                            <option value="mayo">Mayo</option>
+                            <option value="junio">Junio</option>
+                            <option value="julio">Julio</option>
+                            <option value="agosto">Agosto</option>
+                            <option value="septiembre">Septiembre</option>
+                            <option value="octubre">Octubre</option>
+                            <option value="noviembre">Noviembre</option>
+                            <option value="diciembre">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Cuéntame algo mas sobre ti</label>
+                    <div class="control">
+                        <textarea class="textarea" name="informacion_adicional"
+                            placeholder="Escribe cualquier otra cosa que desees compartir..." rows="4"
+                            required></textarea>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="checkbox">
+                        <input type="checkbox" name="terminos" required>
+                        Acepto los términos y condiciones.
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
+    <div class="container">
+        <div class="form-box">
+            <form id="miFormulario" action="#" method="post" class="formulario">
+            </form>
+
+            <div class="buttons-container">
+                <button class="button has-background-link" type="submit" form="miFormulario">Enviar</button>
+                <button class="button is-light is-link" type="reset" form="miFormulario">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Derechos reservados</strong> Laura Corina Zapata Longoria</a>
+                <strong>2025 TXD</strong>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.getElementById('navMenu');
+
+            burger.addEventListener('click', function () {
+                menu.classList.toggle('is-active');
+            });
+        });
+    </script>
+</body>
+
+</html>
