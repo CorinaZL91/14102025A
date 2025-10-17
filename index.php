@@ -1,5 +1,5 @@
 <?php
-// --- Procesamiento del formulario contacto simple ---
+// Procesamiento del formulario contacto simple
 $enviado = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nombre"]) && isset($_POST["mensaje"])) {
     $nombre = htmlspecialchars($_POST["nombre"]);
@@ -183,4 +183,82 @@ Su estilo combina influencias del rock clásico, pop alternativo y un toque de n
     <input type="radio" name="generoAdv" value="Pop" required>Pop
     <input type="radio" name="generoAdv" value="Rock">Rock
     <input type="radio" name="generoAdv" value="Soul">Soul
-    <p>Merch favorito
+    <p>Merch favorito:</p>
+    <input type="checkbox" name="merchAdv" value="Camisas">Camisas
+    <input type="checkbox" name="merchAdv" value="Posters">Posters
+    <input type="checkbox" name="merchAdv" value="Discos">Discos
+    <select id="albumAdv" required>
+        <option value="">--Selecciona álbum--</option>
+        <option value="Harry Styles">Harry Styles</option>
+        <option value="Fine Line">Fine Line</option>
+        <option value="Harry's House">Harry's House</option>
+    </select>
+    <textarea id="razonAdv" placeholder="¿Por qué te gusta Harry Styles? (min 20 caracteres)" minlength="20" required></textarea>
+    <button type="submit">Enviar Formulario</button>
+</form>
+<p id="msgSuccess" style="color:green; display:none; font-weight:bold; margin-top:15px;">
+¡Formulario enviado correctamente! 💌
+</p>
+</section>
+
+<footer>
+<p>&copy; <?php echo date("Y");?> Harry Styles Experience | Creado en PHP 💕</p>
+</footer>
+
+<script>
+// ------------ Navegación ------------
+function mostrar(id){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+// ------------ Trivia Juego ------------
+const preguntas=[
+    {pregunta:"¿Cuál fue el primer álbum solista de Harry Styles?", opciones:["Fine Line","Harry Styles","Harry’s House"], correcta:"Harry Styles"},
+    {pregunta:"¿De qué banda formó parte?", opciones:["Coldplay","One Direction","Maroon 5"], correcta:"One Direction"},
+    {pregunta:"¿Qué canción incluye la frase 'You know it's not the same as it was'?", opciones:["Watermelon Sugar","As It Was","Sign of the Times"], correcta:"As It Was"}
+];
+let indice=0; let puntuacion=0;
+function mostrarPregunta(){
+    const cont=document.getElementById('pregunta-container');
+    if(indice<preguntas.length){
+        const p=preguntas[indice];
+        cont.innerHTML=`<div class='pregunta'><strong>${p.pregunta}</strong></div>`+
+        p.opciones.map(op=>`<div class='opcion' onclick='verificar("${op}")'>${op}</div>`).join("");
+    }else{
+        cont.innerHTML=`<h3>Juego terminado 🎉</h3><p>Tu puntuación final es: ${puntuacion}/${preguntas.length}</p>`;
+    }
+}
+function verificar(respuesta){
+    if(respuesta===preguntas[indice].correcta){puntuacion++; document.getElementById('puntuacion').textContent=puntuacion;}
+    indice++; mostrarPregunta();
+}
+mostrarPregunta();
+
+// ------------ Formulario Avanzado ------------
+document.getElementById('advancedForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nombre=document.getElementById('nombreAdv').value.trim();
+    const correo=document.getElementById('correoAdv').value.trim();
+    const pass=document.getElementById('passAdv').value.trim();
+    const edad=document.getElementById('edadAdv').value;
+    const fecha=document.getElementById('fechaAdv').value;
+    const genero=document.querySelector('input[name="generoAdv"]:checked');
+    const merch=document.querySelectorAll('input[name="merchAdv"]:checked');
+    const album=document.getElementById('albumAdv').value;
+    const razon=document.getElementById('razonAdv').value.trim();
+
+    if(nombre.length<3){alert("El nombre debe tener al menos 3 caracteres."); return;}
+    if(pass.length<6){alert("La contraseña debe tener al menos 6 caracteres."); return;}
+    if(!genero){alert("Selecciona un género."); return;}
+    if(merch.length===0){alert("Selecciona al menos un tipo de merch."); return;}
+    if(album===""){alert("Selecciona un álbum."); return;}
+    if(razon.length<20){alert("La razón debe tener al menos 20 caracteres."); return;}
+
+    document.getElementById('msgSuccess').style.display='block';
+    this.reset();
+});
+</script>
+</body>
+</html>
